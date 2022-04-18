@@ -43,6 +43,22 @@ def add_new_user(type_doc, num_doc, name, num_shel):
     else:
         print(f"Такой полки нет")
 
+
+def delete(doc_arg):
+    found = None
+    for i,document in enumerate(documents):
+        if document['number'] == doc_arg:
+            found = i
+            documents.remove(document)
+            break
+    for dir in directories.values():
+        if doc_arg in dir:
+            dir.remove(doc_arg)
+            print('Домумент удален')
+            break
+    else:
+        print('Домумент не найден')
+
 def main_menu():
     while True:
         command = input('\n Выберете одну из команд: p, l, s, a\n\
@@ -57,6 +73,8 @@ def main_menu():
                     shel_num(input('\nВведите номер документа: '))
         elif command == 'a':
             add_new_user(input('Тип документа:'),input("Номер документа"),input("Имя:"),input("Номер полки"))
+        elif command == 'd':
+            delete(input('\nВведите номер документа: '))
         elif command == 'exit' or command == 'q':
               break
         elif command == 'help' or command == 'h':
