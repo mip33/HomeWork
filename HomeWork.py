@@ -54,7 +54,7 @@ def delete(doc_arg):
     for dir in directories.values():
         if doc_arg in dir:
             dir.remove(doc_arg)
-            print('Домумент удален')
+            print('Домумент удален из каталога и полки')
             break
     else:
         print('Домумент не найден')
