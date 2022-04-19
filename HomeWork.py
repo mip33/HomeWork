@@ -59,9 +59,37 @@ def delete(doc_arg):
     else:
         print('Домумент не найден')
 
+
+def move_shelf():
+    tmp = None
+    doc_arg = input('Введите номер документа:')
+    for key,value in directories.items():
+        if doc_arg in value:
+            i = value.index(doc_arg)
+            tmp = value.pop(i)
+            break
+    if tmp is None:
+        print("Документ не найдена!")
+        return
+    num_shelf = input('Введите номер полки:')
+    if num_shelf not in directories:
+        print("Полка не найдена!")
+        return
+    directories[num_shelf].append(tmp)
+    print("Документ добавлен на полку")
+
+
+def add_shelf():
+    num_shelf = input('Введите номер полки:')
+    if num_shelf in directories:
+        print("Полка уже существует!")
+        return
+    directories[num_shelf] = []
+    print('Полка добавлена')
+
 def main_menu():
     while True:
-        command = input('\n Выберете одну из команд: p, l, s, a\n\
+        command = input('\n Выберете одну из команд: p, l, s, a, d, m, as\n\
                             Для выхода наберите: exit или q \n\
                             Для вызова справки наберите: help или h \n\
                             Введите команду: ')
@@ -75,6 +103,11 @@ def main_menu():
             add_new_user(input('Тип документа:'),input("Номер документа"),input("Имя:"),input("Номер полки"))
         elif command == 'd':
             delete(input('\nВведите номер документа: '))
+        elif command == 'm':
+            move_shelf()
+        elif command == 'as':
+            add_shelf()
+
         elif command == 'exit' or command == 'q':
               break
         elif command == 'help' or command == 'h':

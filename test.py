@@ -10,16 +10,33 @@ directories = {
         '3': []
       }
 
-def move_shelf(doc_arg):
+def move_shelf():
     tmp = None
+    doc_arg = input('Введите номер документа:')
     for key,value in directories.items():
         if doc_arg in value:
             i = value.index(doc_arg)
             tmp = value.pop(i)
             break
-    
+    if tmp is None:
+        print("Документ не найдена!")
+        return
+    num_shelf = input('Введите номер полки:')
+    if num_shelf not in directories:
+        print("Полка не найдена!")
+        return
+    directories[num_shelf].append(tmp)
+    print("Документ добавлен на полку")
 
 
+def add_shelf():
+    num_shelf = input('Введите номер полки:')
+    if num_shelf in directories:
+        print("Полка уже существует!")
+        return
+    directories[num_shelf] = []
+    print('Полка добавлена')
 
+move_shelf()
+add_shelf()
 
-move_shelf(11-2)
