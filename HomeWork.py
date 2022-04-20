@@ -122,4 +122,4 @@ def main_menu():
         else:
             print('Вы ввели команду не корректно, повторите ввод.')
 
-main_menu() #конец
+main_menu()
